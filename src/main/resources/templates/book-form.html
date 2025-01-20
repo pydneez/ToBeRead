@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel = "stylesheet", type = text/css th:href = "@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" >
+    <style>
+        .icon-hover {
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        #rating-bar {
+            display: inline;
+            display : inline-block;
+            justify-content: space-between;
+        }
+        #rating-bar > i:before {
+            color: grey;
+            cursor: pointer;
+            font-size: 2rem;
+        }
+        #rating-ba:hover ~ i:before {
+            color: gold;
+
+        }
+    </style>
+</head>
+</head>
+<body>
+    <div class = "container-fluid">
+        <div class = "text-center">
+            <h2>[[${pageTitle}]]</h2>
+        </div>
+
+        <form th:action = "@{/books/save}" th:object="${book}" method = "post" style = "max-width: 50%; margin: 0 auto; ">
+            <input type = "hidden" th:field = "*{id}">
+
+            <div class = "border border-secondary rounded p-5">
+                <div class = "form-group row">
+                    <label for = "title" class = "col-sm-4 col-form-label">Title</label>
+                    <div class = "col-sm-8">
+                        <input type = "text" th:field = "*{title}" class = "form-control" id = "title" name = "title" required>
+                    </div>
+                    
+                </div>
+
+                <div class = "form-group row">
+                    <label for = "author" class = "col-sm-4 col-form-label">Author</label>
+                    <div class = "col-sm-8">
+                        <input type = "text" th:field = "*{author}" class = "form-control" id = "author" name = "title" required>
+                    </div>
+                    
+                </div>
+
+                <div class = "form-group row">
+                    <label for = "genre" class = "col-sm-4 col-form-label">Genre</label>
+                    <div class = "col-sm-8">
+                        <select th:field="*{genre}">
+                            <option value = "" selected disabled>Select Genre</option>
+                            <option value="ACTION">Action</option>
+                            <option value="BIOGRAPHY">Biography</option>
+                            <option value="CHILDREN">Children</option>
+                            <option value="CONTEMPORARY">Contemporary</option>
+                            <option value="DYSTOPIAN">Dystopian</option>
+                            <option value="FANTASY">Fantasy</option>
+                            <option value="GRAPHICS">Graphics</option>
+                            <option value="HISTORICALFICTION">Historical fiction</option>
+                            <option value="HORROR">Horror</option>
+                            <option value="LGBTQ">Lgbtq</option>
+                            <option value="LITERARY">Literary</option>
+                            <option value="MAGICALREALISM">Magical realism</option>
+                            <option value="MANGA">Manga</option>
+                            <option value="MEMOIR">Memoir</option>
+                            <option value="MYSTERY">Mystery</option>
+                            <option value="ROMANCE">Romance</option>
+                            <option value="SCIENCEFICTION">Science fiction</option>
+                            <option value="SELFHELP">Self help</option>
+                            <option value="THRILLER">Thriller</option>
+                            <option value="YOUNGADULT">Young adult</option>
+
+                        </select>
+                    </div>
+                    
+                </div>
+
+                <div class = "form-group row">
+                    <label for = "status" class = "col-sm-4 col-form-label">Status</label>
+                    <div class = "col-sm-8" style = "display: block;">
+                        <input type = "radio" th:field = "*{status}" value = "WANT_TO_READ" name = "status" onclick="toggleFields()" required /> Want To Read
+                        <input type = "radio" th:field = "*{status}" value = "READING" name = "status" onclick="toggleFields()"/> Reading
+                        <input type = "radio" th:field = "*{status}" value = "READ" name = "status" onclick="toggleFields()"/> Read
+                        <input type = "radio" th:field = "*{status}" value = "DNF" name = "status" onclick="toggleFields()"/> Did Not Finish
+                    </div>
+                    
+                </div>
+
+                <div class = "form-group row">
+                    <label for = "dateStarted" class = "col-sm-4 col-form-label">Date Started</label>
+                    <div class = "col-sm-8">
+                        <input type = "date" th:field = "*{dateStarted}" class = "form-control" id = "dateStarted" name = "dateStarted">
+                    </div>
+                    
+                </div>
+
+
+                <div class = "form-group row">
+                    <label for = "dateFinished" class = "col-sm-4 col-form-label">Date Finished</label>
+                    <div class = "col-sm-8">
+                        <input type = "date" th:field = "*{dateFinished}" class = "form-control" id = "dateFinished" name = "dateFinished" >
+                    </div>
+
+                </div>
+
+                <div class = "form-group row">
+                    <label for = "rating" class = "col-sm-4 col-form-label" id = "rating" >Rating</label>
+                    <div class = "col-sm-8" id = "rating-bar">
+                        <span>
+                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
+                            </span>
+                        
+                    </div>
+                </div>
+
+                <div class = "form-group row"> 
+                    <label for = "review" class = "col-sm-4 col-form-label">Review</label>
+                    <div class = "col-sm-8">
+                        <textarea th:field = "*{review}" class = "form-control" id = "review" name = "review" rows = "3" ></textarea>
+                    </div>
+                </div>
+
+                <div class = "text-center">
+                    <button type = "submit" class = "btn btn-primary m-2">Save</button>
+                    <button type = "button" class = "btn btn-secondary m-2" th:href = "@{/books}" onclick="cancelForm()">Cancel</button>
+                </div>
+    
+        </form>
+
+
+
+
+    </div>
+    
+    <script type = "text/javascript">
+        function cancelForm(){
+            window.location = "[[@{/books}]]";
+        }
+
+        function toggleFields() {
+            const status = document.querySelector('input[name="status"]:checked').value;
+            const dateStarted = document.getElementById("dateStarted");
+            const dateFinished = document.getElementById("dateFinished");
+            const rating = document.getElementById("rating");
+            const review = document.getElementById("review");
+
+        if (status === "WANT_TO_READ") {
+            // Disable all fields when the status is "Want to Read"
+            dateStarted.disabled = true;
+            dateFinished.disabled = true;
+            rating.disabled = true;
+            review.disabled = true;
+        } else {
+            dateStarted.disabled = false;
+            dateFinished.disabled = false;              
+            rating.disabled = false;
+            review.disabled = false;
+         
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+        const today = new Date().toISOString().split("T")[0];
+        const dateStarted = document.getElementById("dateStarted");
+        const dateFinished = document.getElementById("dateFinished");
+        })
+
+        
+        }
+
+    </script>
+</body>
+</html>

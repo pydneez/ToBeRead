@@ -30,15 +30,13 @@ public class BookRepositoryTest {
     public void testAddNew(){
         // create a new book
         Book book3 = new Book();
-        book3.setTitle("And then there were none");
-        book3.setAuthor("Agatha Christie");
-        book3.setGenre(Genre.MYSTERY);
-        book3.setStatus(Status.READ);
-        book3.setDateStarted(LocalDate.of(2021, 8, 1));
-        book3.setDateFinished(LocalDate.of(2021, 8, 10));
-        book3.setRating(4.5);
-        book3.setReview("Great book, highly recommended");
-
+        book3.setTitle("White nights");
+        book3.setAuthor("Fyodor Dostoevsky");
+        book3.setGenre(Genre.LITERARY);
+        book3.setStatus(Status.WANT_TO_READ);
+        book3.setDateStarted(LocalDate.now());
+        book3.setDateFinished(null);
+        
         Book savedBook = bookRepository.save(book3);
         assertNotNull(savedBook);
         System.out.println(savedBook);

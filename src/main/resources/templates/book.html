@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <link rel = "stylesheet", type = text/css th:href = "@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" >
+    <link rel = "stylesheet" href = "/Users/dnee/Documents/tryJava/book/src/main/resources/static/book.css"></style>
+</head>
+</head>
+<body>
+    <div class = "container-fluid text-center">
+        <h1>Manage Books</h1>
+        <a class = "btn btn-primary active h2 m-2" th:href = "@{/books/new}">Add a new book</a>
+    </div>
+    
+    <div th:if = "${message}" class = "alert alert-success text-center" th:text = "${message}"></div>
+
+    <div>
+        <table class = "table table-bordered table-hover text-center" style = "max-width: 95%; margin: 0 auto;">
+            <thead class ="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Status</th>
+                    <th>Date Started</th>
+                    <th>Date Finished</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <th:block th:each = "book : ${listBooks}">
+                <tr>
+                    <td th:text = "${book.id}"></td>
+                    <td th:text = "${book.title}"></td>
+                    <td th:text = "${book.author}"></td>
+                    <td th:text = "${book.genre}"></td>
+                    <td th:text = "${book.status}" id = status></td>
+                    <td th:text = "${book.dateStarted}"></td>
+                    <td th:text = "${book.dateFinished}"></td>
+                    <td th:text = "${book.rating}"></td>
+                    <td th:text = "${book.review}"></td>
+                    <td>
+                        <a class = "btn btn-success h5 mr-3 active " th:href = "@{'/books/edit/' + ${book.id}}">
+                            <i class="bi bi-pencil-square"></i>  Edit
+                        </a>
+                        <a class = "btn btn-danger h5 mr-3 active " th:href = "@{'/books/delete/' + ${book.id}}">
+                            <i class="bi bi-trash"></i>  Delete
+                        </a>
+                    </td>
+                </tr>
+            </th:block>
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
