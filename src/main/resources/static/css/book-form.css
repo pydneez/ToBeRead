@@ -1,0 +1,25 @@
+.bi-star-fill{
+    font-size: 2rem;
+    transition: color 0.3s ease;
+    color : white;
+    
+}
+
+.bi-star-fill:hover{
+    color:gold;
+}
+
+
+#rating-bar {
+    display: inline;
+    display : inline-block;
+    justify-content: space-between;
+}
+#rating-bar > i:before {
+    color: grey;
+    cursor: pointer;
+    font-size: 2rem;
+}
+#rating-ba:hover ~ i:before {
+    color: gold;
+}

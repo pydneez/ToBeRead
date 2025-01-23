@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.dnee.book.entity.Book;
 import com.dnee.book.repository.BookRepository;
 
+// addtional logic and validation is applied here
 @Service
 public class BookService {
     
@@ -42,5 +44,12 @@ public class BookService {
 
         throw new BookNotFoundException("Could not find the book by the ID : " + id);
     }
+
+    public List<Book> getAllBooks(String sortField, String sortDir) {
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        return bookRepository.findAll(sort); // Ensure your repository extends JpaRepository
+    }
+    
 }
 

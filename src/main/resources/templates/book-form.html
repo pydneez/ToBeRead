@@ -5,32 +5,11 @@
     <title>[[${pageTitle}]]</title>
     <link rel = "stylesheet", type = text/css th:href = "@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" >
-    <style>
-        .icon-hover {
-            font-size: 2rem;
-            transition: color 0.3s ease;
-        }
-        
-        #rating-bar {
-            display: inline;
-            display : inline-block;
-            justify-content: space-between;
-        }
-        #rating-bar > i:before {
-            color: grey;
-            cursor: pointer;
-            font-size: 2rem;
-        }
-        #rating-ba:hover ~ i:before {
-            color: gold;
-
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href = "/css/book-form.css">
 </head>
 <body>
     <div class = "container-fluid">
-        <div class = "text-center">
+        <div class = "text-center my-3">
             <h2>[[${pageTitle}]]</h2>
         </div>
 
@@ -117,11 +96,11 @@
                     <label for = "rating" class = "col-sm-4 col-form-label" id = "rating" >Rating</label>
                     <div class = "col-sm-8" id = "rating-bar">
                         <span>
-                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
-                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
-                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
-                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
-                            <i class = "bi bi-star icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star-fill icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star-fill icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star-fill icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star-fill icon-hover" style = "color: gray;"></i>
+                            <i class = "bi bi-star-fill icon-hover" style = "color: gray;"></i>
                             </span>
                         
                     </div>
@@ -147,40 +126,7 @@
     </div>
     
     <script type = "text/javascript">
-        function cancelForm(){
-            window.location = "[[@{/books}]]";
-        }
-
-        function toggleFields() {
-            const status = document.querySelector('input[name="status"]:checked').value;
-            const dateStarted = document.getElementById("dateStarted");
-            const dateFinished = document.getElementById("dateFinished");
-            const rating = document.getElementById("rating");
-            const review = document.getElementById("review");
-
-        if (status === "WANT_TO_READ") {
-            // Disable all fields when the status is "Want to Read"
-            dateStarted.disabled = true;
-            dateFinished.disabled = true;
-            rating.disabled = true;
-            review.disabled = true;
-        } else {
-            dateStarted.disabled = false;
-            dateFinished.disabled = false;              
-            rating.disabled = false;
-            review.disabled = false;
-         
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-        const today = new Date().toISOString().split("T")[0];
-        const dateStarted = document.getElementById("dateStarted");
-        const dateFinished = document.getElementById("dateFinished");
-        })
-
         
-        }
-
     </script>
 </body>
 </html>

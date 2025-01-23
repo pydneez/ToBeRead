@@ -22,8 +22,12 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/books")
-    public String showBookList(Model model){
-        List<Book> listBooks = bookService.listAll();
+    public String showBookList(
+        @RequestParam(defaultValue = "id") String sortField,
+        @RequestParam(defaultValue = "asc") String sortDir,
+        Model model){
+
+        List<Book> listBooks = bookService.getAllBooks(sortField, sortDir);
         model.addAttribute("listBooks", listBooks);
         return "book";
     } 

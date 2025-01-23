@@ -1,0 +1,14 @@
+.bi-caret-up-fill, .bi-caret-down-fill{
+    font-size: 1.2rem;
+}
+
+#alert-message.fade-out{
+    opacity: 0;
+    transition : opacity 1s ease-out;
+}
+
+.table{
+    max-width: 95%;
+    margin: 0 auto;
+}
+
