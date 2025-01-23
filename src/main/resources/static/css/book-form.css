@@ -1,25 +1,38 @@
-.bi-star-fill{
+
+
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.bi-star-fill {
+    color: lightgray;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
     font-size: 2rem;
-    transition: color 0.3s ease;
-    color : white;
-    
+    transition: color 0.2s ease-in-out;
 }
 
-.bi-star-fill:hover{
-    color:gold;
+.bi-star-fill:hover, .bi-star-fill:hover ~ .bi-star-fill {
+    color: orange;
 }
 
 
-#rating-bar {
-    display: inline;
-    display : inline-block;
-    justify-content: space-between;
+.bi-star-fill {
+    font-size: 2rem; /* Adjust the size of the stars */
+    cursor: pointer; /* Make the stars clickable */
+    color: lightgray; /* Default color for unselected stars */
+    transition: color 0.3s ease; /* Smooth color transition */
 }
-#rating-bar > i:before {
-    color: grey;
-    cursor: pointer;
-    font-size: 2rem;
+
+/* Hover effect to highlight stars */
+.bi-star-fill:hover,.bi-star-fill:hover ~ .bi-star-fill {
+    color: gold; /* Color when hovering over the stars */
 }
-#rating-ba:hover ~ i:before {
-    color: gold;
+
+/* Style for selected stars */
+.bi-star-fill.selected {
+    color: gold; /* Color for selected (clicked) stars */
 }
+

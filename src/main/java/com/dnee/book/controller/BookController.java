@@ -11,8 +11,7 @@ import com.dnee.book.entity.Book;
 import com.dnee.book.service.BookNotFoundException;
 import com.dnee.book.service.BookService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -23,8 +22,8 @@ public class BookController {
 
     @GetMapping("/books")
     public String showBookList(
-        @RequestParam(defaultValue = "id") String sortField,
-        @RequestParam(defaultValue = "asc") String sortDir,
+        @RequestParam(defaultValue = "id") String sortField, 
+        @RequestParam(defaultValue = "asc") String sortDir, // default sort by ascending order of id
         Model model){
 
         List<Book> listBooks = bookService.getAllBooks(sortField, sortDir);
@@ -71,5 +70,4 @@ public class BookController {
     }
     
     
-
 }

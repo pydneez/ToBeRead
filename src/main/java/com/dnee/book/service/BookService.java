@@ -18,7 +18,7 @@ public class BookService {
     private BookRepository bookRepository;
     
     public List<Book> listAll(){
-        return (List<Book>) bookRepository.findAll(); // findAll() return 
+        return (List<Book>) bookRepository.findAll(); 
     }
 
     public void save(Book book){
@@ -48,7 +48,7 @@ public class BookService {
     public List<Book> getAllBooks(String sortField, String sortDir) {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())
                 ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
-        return bookRepository.findAll(sort); // Ensure your repository extends JpaRepository
+        return bookRepository.findAll(sort); // in PagingAndSortingRepository - Returns all entities sorted by the given options.
     }
     
 }

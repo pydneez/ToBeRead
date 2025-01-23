@@ -45,5 +45,4 @@ public class Book {
     private Double rating;
     private String review;
 
-
 }
