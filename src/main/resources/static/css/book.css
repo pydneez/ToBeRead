@@ -12,3 +12,6 @@
     margin: 0 auto;
 }
 
+.btn:hover{
+    cursor:pointer;
+}

@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -45,11 +48,16 @@ public class BookService {
         throw new BookNotFoundException("Could not find the book by the ID : " + id);
     }
 
-    public List<Book> getAllBooks(String sortField, String sortDir) {
+    public Page<Book> getPaginated(Integer pageNo, Integer pageSize, String sortField, String sortDir){
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())
                 ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
-        return bookRepository.findAll(sort); // in PagingAndSortingRepository - Returns all entities sorted by the given options.
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+
+        return this.bookRepository.findAll(pageable);
+
     }
+
     
 }
 

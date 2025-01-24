@@ -51,3 +51,20 @@ document.addEventListener("DOMContentLoaded", () => {
         updateStarRating(initialRating);
     }
 });
+
+
+const maxDateFinished = document.getElementById("dateFinished").max;
+const maxDateStarted = document.getElementById("dateStarted").max;
+
+const date = new Date();
+
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+
+// This arrangement can be altered based on how we want the date's format to appear.
+let currentDate = `${year}-${month}-${day}`;
+console.log(currentDate); // "17-6-2022"
+
+maxDateFinished.max = new Date().toLocaleDateString('fr-ca')
+maxDateStarted.max = new Date().toLocaleDateString('fr-ca')

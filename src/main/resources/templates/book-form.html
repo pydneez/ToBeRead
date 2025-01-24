@@ -8,9 +8,38 @@
     <link rel="stylesheet" href = "/css/book-form.css">
 </head>
 <body>
+   
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+        <div class = "container-fluid collapse navbar-collapse">
+            <a class="navbar-brand logo" th:href = "@{/}">
+                <i class="bi bi-book"></i>
+                To Be Read
+              </a>
+            
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href = "@{/}">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href = "@{/books}">Your Library</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/books/new}">Add a Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/signup}">Sign Up</a>
+                </li>
+
+            
+        </div>    
+    </nav>
+   
     <div class = "container-fluid">
         <div class = "text-center my-3">
-            <h2>[[${pageTitle}]]</h2>
+            <h1>[[${pageTitle}]]</h1>
         </div>
 
         <form th:action = "@{/books/save}" th:object="${book}" method = "post" style = "max-width: 50%; margin: 0 auto; ">
@@ -36,8 +65,8 @@
                 <div class = "form-group row">
                     <label for = "genre" class = "col-sm-4 col-form-label">Genre</label>
                     <div class = "col-sm-8">
-                        <select th:field="*{genre}">
-                            <option value = "" selected disabled>Select Genre</option>
+                        <select th:field="*{genre}" class="form-select" required>
+                            <option selected disabled value=""></option>
                             <option value="ACTION">Action</option>
                             <option value="BIOGRAPHY">Biography</option>
                             <option value="CHILDREN">Children</option>
@@ -72,7 +101,6 @@
                         <input type = "radio" th:field = "*{status}" value = "READ" name = "status" onclick="toggleFields()"/> Read
                         <input type = "radio" th:field = "*{status}" value = "DNF" name = "status" onclick="toggleFields()"/> Did Not Finish
                     </div>
-                    
                 </div>
 
                 <div class = "form-group row">
